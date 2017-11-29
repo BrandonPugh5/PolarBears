@@ -13,7 +13,7 @@ namespace PolarBearsProgram
         int accel_limit;
         int velocity_limit;
         int decel_limit;
-        String serial;
+        public String serial;
 
         public Motor(String IP, String serial, int Acceleration,int Deceleration, int Velocity)
         {
@@ -23,7 +23,7 @@ namespace PolarBearsProgram
             this.accel_limit = Acceleration;
             this.decel_limit = Deceleration;
             this.velocity_limit = Velocity;
-            //this.decel_limit = Deceleration;
+        
         }
 
         public string IP()

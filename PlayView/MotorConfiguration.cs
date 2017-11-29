@@ -43,9 +43,19 @@ namespace PolarBearsProgram
             {
                 MessageBox.Show("Must input a non-zero decimal value for deceleration!");
             }
-            if(!string.IsNullOrWhiteSpace(maskedTextBox1.Text) && !string.IsNullOrWhiteSpace(maskedTextBox2.Text) && !string.IsNullOrWhiteSpace(maskedTextBox3.Text))
+            if (textBox1.Text == "")
             {
-                motors.Add(new Motor(ip_1, "TestMotor" + ++amount, int.Parse(maskedTextBox2.Text),int.Parse(maskedTextBox1.Text), int.Parse(maskedTextBox1.Text)));
+                MessageBox.Show("Must input a name for the motor!");
+            }
+
+            if (!string.IsNullOrWhiteSpace(maskedTextBox1.Text) && !string.IsNullOrWhiteSpace(maskedTextBox2.Text) && !string.IsNullOrWhiteSpace(maskedTextBox3.Text) &&!string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                motors.Add(new Motor(ip_1, textBox1.Text, int.Parse(maskedTextBox2.Text),int.Parse(maskedTextBox1.Text), int.Parse(maskedTextBox1.Text)));
+                dataGridView1.Rows.Clear();
+                foreach(Motor motor in motors)
+                {
+                    dataGridView1.Rows.Add(motor, motor.IP());
+                }
             }
         }
 
@@ -63,6 +73,43 @@ namespace PolarBearsProgram
             Program.playView.Show();
             Hide();
 
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        //Rename Button
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+            DialogResult result = MessageBox.Show("Do you want to save these changes?", "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                int count = 0;
+                foreach (Motor motor in motors)
+                {
+                    String name = motor.ToString();
+                    if (name != dataGridView1.Rows[count].Cells[0].Value.ToString())
+                    {
+                        motor.serial = dataGridView1.Rows[count].Cells[0].Value.ToString();
+                    }
+                    count++;
+                }
+
+                dataGridView1.Rows.Clear();
+                foreach (Motor motor in motors)
+                {
+                    dataGridView1.Rows.Add(motor, motor.IP());
+                }
+            }
+        }
+
+        //Delete Button
+        private void button5_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

@@ -115,40 +115,51 @@ namespace PolarBearsProgram
         //add trigger to datagrid
         private void button1_Click_1(object sender, EventArgs e)
         {
-
-            Cue selected = (Cue)Created_Cues.SelectedItem;
-            if (textBox8.Text == "")
-                textBox8.Text = "0";
-            if (textBox9.Text == "")
-                textBox9.Text = "0";
-            if (textBox19.Text == "")
-                textBox19.Text = "0";
-            if (textBox1.Text == "")
-                textBox1.Text = "0";
-
-            plc = comboBox2.Text;
-            motor = comboBox1.Text;
-            pause = Pause_10.Checked;
-            rotation = int.Parse(textBox8.Text);
-            acceleration = int.Parse(textBox9.Text);
-            deceleration = int.Parse(textBox1.Text);
-            velocity = int.Parse(textBox19.Text);
-            time = int.Parse(textBox29.Text);
-            DialogResult result = MessageBox.Show("Are you sure you want to add these values to cue " + selected + "?\n" + " Pause: " + pause + "\n Rotation: " + rotation + " degrees\n Acceleration: " + acceleration + " m/s^2\n Velocity: " + velocity + " m/s\n Time: " + time + " sec\n on motor" + motor, "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
-            if (result == DialogResult.Yes)
+            if (Created_Cues.SelectedItem != null)
             {
-                if (ValidateLimits(rotation, acceleration,deceleration, velocity)) //validates data
-                {
-                    dataGridView1.Rows.Add(plc, motor, pause, rotation, acceleration, deceleration, velocity, time);
+                 if (!string.IsNullOrWhiteSpace(comboBox1.Text))
+                    {
+                    Cue selected = (Cue)Created_Cues.SelectedItem;
+                    if (textBox8.Text == "")
+                        textBox8.Text = "0";
+                    if (textBox9.Text == "")
+                        textBox9.Text = "0";
+                    if (textBox19.Text == "")
+                        textBox19.Text = "0";
+                    if (textBox1.Text == "")
+                        textBox1.Text = "0";
+
+                    plc = comboBox2.Text;
+                    motor = comboBox1.Text;
+                    pause = Pause_10.Checked;
+                    rotation = int.Parse(textBox8.Text);
+                    acceleration = int.Parse(textBox9.Text);
+                    deceleration = int.Parse(textBox1.Text);
+                    velocity = int.Parse(textBox19.Text);
+                    time = int.Parse(textBox29.Text);
+                    DialogResult result = MessageBox.Show("Are you sure you want to add these values to cue " + selected + "?\n" + " Pause: " + pause + "\n Rotation: " + rotation + " degrees\n Acceleration: " + acceleration + " m/s^2\n Velocity: " + velocity + " m/s\n Time: " + time + " sec\n on motor" + motor, "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Yes)
+                    {
+                        if (ValidateLimits(rotation, acceleration, deceleration, velocity)) //validates data
+                        {
+                            dataGridView1.Rows.Add(plc, motor, pause, rotation, acceleration, deceleration, velocity, time);
 
 
-                    textBox8.Text = "";
-                    textBox9.Text = "";
-                    textBox19.Text = "";
-                    textBox29.Text = "";
-                    textBox1.Text = "";
+                            textBox8.Text = "";
+                            textBox9.Text = "";
+                            textBox19.Text = "";
+                            textBox29.Text = "";
+                            textBox1.Text = "";
+                        }
+                    }
                 }
+
+                else
+                    MessageBox.Show("Must select a motor!");
             }
+
+            else
+                MessageBox.Show("Must select a Cue!");
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -163,7 +174,7 @@ namespace PolarBearsProgram
             {
                 int datarows = 0;
                 Cue selected = (Cue)Created_Cues.SelectedItem;
-                if (selected == null)
+                if (selected.trigs == null)
                 {
 
                 }
@@ -231,36 +242,42 @@ namespace PolarBearsProgram
         //Testing Button
         private void button3_Click(object sender, EventArgs e)
         {
-            if (textBox8.Text == "")
-                textBox8.Text = "0";
-            if (textBox9.Text == "")
-                textBox9.Text = "0";
-            if (textBox19.Text == "")
-                textBox19.Text = "0";
-            if (textBox29.Text == "")
-                textBox29.Text = "0";
-            if (textBox1.Text == "")
-                textBox1.Text = "0";
-
-            plc = comboBox2.Text;
-            motor = comboBox1.Text;
-            pause = Pause_10.Checked;
-            rotation = int.Parse(textBox8.Text);
-            acceleration = int.Parse(textBox9.Text);
-            deceleration = int.Parse(textBox1.Text);
-            velocity = int.Parse(textBox19.Text);
-            time = int.Parse(textBox29.Text);
-
-            DialogResult result = MessageBox.Show("Are you sure you want to test these values?\n" + " Pause: " + pause + "\n Rotation: " + rotation + " degrees\n Acceleration: " + acceleration + " m/s^2\n Deceleration: "+deceleration+"m/s^2\n Velocity: " + velocity + " m/s\n Time: " + time + " sec\n on motor" + motor, "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
-            if (result == DialogResult.Yes)
+            if (!string.IsNullOrWhiteSpace(comboBox1.Text))
             {
-                if (ValidateLimits(rotation, acceleration,deceleration, velocity)) //validates data
+                if (textBox8.Text == "")
+                    textBox8.Text = "0";
+                if (textBox9.Text == "")
+                    textBox9.Text = "0";
+                if (textBox19.Text == "")
+                    textBox19.Text = "0";
+                if (textBox29.Text == "")
+                    textBox29.Text = "0";
+                if (textBox1.Text == "")
+                    textBox1.Text = "0";
+
+                plc = comboBox2.Text;
+                motor = comboBox1.Text;
+                pause = Pause_10.Checked;
+                rotation = int.Parse(textBox8.Text);
+                acceleration = int.Parse(textBox9.Text);
+                deceleration = int.Parse(textBox1.Text);
+                velocity = int.Parse(textBox19.Text);
+                time = int.Parse(textBox29.Text);
+
+                DialogResult result = MessageBox.Show("Are you sure you want to test these values?\n" + " Pause: " + pause + "\n Rotation: " + rotation + " degrees\n Acceleration: " + acceleration + " m/s^2\n Deceleration: " + deceleration + "m/s^2\n Velocity: " + velocity + " m/s\n Time: " + time + " sec\n on motor" + motor, "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
                 {
-                    log.AddRow("Testing this event" + " Pause: " + pause + "\n Rotation: " + rotation + " degrees\n Acceleration: " + acceleration + " m/s^2\n Deceleration:"+ deceleration+"m/s^2\n Velocity: " + velocity + " m/s\n Time: " + time + " sec\n on motor" + motor);
-                    t = new Thread(() => DoWork());
-                    t.Start();
+                    if (ValidateLimits(rotation, acceleration, deceleration, velocity)) //validates data
+                    {
+                        log.AddRow("Testing this event" + " Pause: " + pause + "\n Rotation: " + rotation + " degrees\n Acceleration: " + acceleration + " m/s^2\n Deceleration:" + deceleration + "m/s^2\n Velocity: " + velocity + " m/s\n Time: " + time + " sec\n on motor" + motor);
+                        t = new Thread(() => DoWork());
+                        t.Start();
+                    }
                 }
             }
+
+            else
+                MessageBox.Show("Must select a motor!");
         }
 
         //DoWork Method runs the motor for testing

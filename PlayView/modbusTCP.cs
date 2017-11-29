@@ -5,6 +5,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using PolarBearsProgram;
 
 namespace ModbusTCP
 {
@@ -31,6 +32,7 @@ namespace ModbusTCP
     /// </summary>
     public class Master
     {
+        
         // ------------------------------------------------------------------------
         // Constants for access
         private const byte fctReadCoil = 1;
@@ -42,6 +44,8 @@ namespace ModbusTCP
         private const byte fctWriteMultipleCoils = 15;
         private const byte fctWriteMultipleRegister = 16;
         private const byte fctReadWriteMultipleRegister = 23;
+
+        LogForm log = new LogForm();
 
         /// <summary>Constant for exception illegal function.</summary>
         public const byte excIllegalFunction = 1;
@@ -638,7 +642,7 @@ namespace ModbusTCP
                 {
                     tcpSynCl.Send(write_data, 0, write_data.Length, SocketFlags.None);
                     int result = tcpSynCl.Receive(tcpSynClBuffer, 0, tcpSynClBuffer.Length, SocketFlags.None);
-                    
+
                     byte unit = tcpSynClBuffer[6];
                     byte function = tcpSynClBuffer[7];
                     byte[] data;
@@ -672,9 +676,14 @@ namespace ModbusTCP
                 catch (SystemException)
                 {
                     CallException(id, write_data[6], write_data[7], excExceptionConnectionLost);
+                    
                 }
             }
-            else CallException(id, write_data[6], write_data[7], excExceptionConnectionLost);
+            else //
+            {
+                CallException(id, write_data[6], write_data[7], excExceptionConnectionLost);
+
+            }
             return null;
         }
     }

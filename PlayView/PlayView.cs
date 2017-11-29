@@ -113,13 +113,15 @@ namespace PolarBearsProgram
                 textBox1.Text = "0";
                 textBox2.Text = "0";
                 textBox3.Text = "0";
-                Cue activecue = (Cue)queueBox.SelectedItem;
-                List<Triggers> trigs = activecue.ReturnTrigger();
-                Console.WriteLine(trigs.Count);
-                int counter = 0;
-                    
-                t = new Thread(() => DoWork(trigs));
-                t.Start();
+                
+                    Cue activecue = (Cue)queueBox.SelectedItem;
+                    List<Triggers> trigs = activecue.ReturnTrigger();
+                    Console.WriteLine(trigs.Count);
+                    int counter = 0;
+
+                    t = new Thread(() => DoWork(trigs));
+                    t.Start();
+                
             }
         }
 
@@ -133,7 +135,7 @@ namespace PolarBearsProgram
                 int rvel = trig.Velocity();
                 int time = trig.Time();
                 int decel = trig.Deceleration();
-                log.AddRow("Running this trigger" + " Pause: " + trig.Pause() + " \nAcceleration: " + accel + " m/s^2\n Deceleration:" + decel + " m/s^2\n Velocity: " + rvel + " m/s\n Time: " + time + " sec\n on motor" + trig.Motor());
+                log.AddRow("Running this trigger" + " Pause: " + trig.Pause() + "\nAcceleration: " + accel + " m/s^2\n Deceleration:" + decel + "m/s^2\n Velocity: " + rvel + " m/s\n Time: " + time + " sec\n on motor" + trig.Motor());
 
                 String size = "12";
                 int startAddress = 4;
@@ -171,9 +173,16 @@ namespace PolarBearsProgram
                 data[10] = BitConverter.GetBytes(decel)[1];
                 data[11] = BitConverter.GetBytes(decel)[0];
 
+
                 int howLong = DateTime.Now.Second;
                 int endTime = howLong + runTime;
-                long position;
+                 while (howLong < endTime)
+                 {
+                     MBmaster.ReadWriteMultipleRegister(ID, unit, StartAddress, 12, StartAddress, data, ref result);
+                     howLong = DateTime.Now.Second;
+                 }
+                 
+               /* long position;
                 while (howLong < endTime)
                 {
                     MBmaster.ReadWriteMultipleRegister(ID, unit, StartAddress, 12, StartAddress, data, ref result);
@@ -186,7 +195,8 @@ namespace PolarBearsProgram
                         textBox2.Text = "Counter Clockwise";
                         textBox3.Text = position.ToString();
                     });
-                }
+                    
+                }*/
             }
         }
 
@@ -239,6 +249,7 @@ namespace PolarBearsProgram
         {
             Program.cueEdit.Show();
             Hide();
+
         }
 
         private void button8_Click(object sender, EventArgs e)

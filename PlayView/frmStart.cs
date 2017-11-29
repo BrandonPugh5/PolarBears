@@ -13,8 +13,8 @@ using System.Timers;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace PolarBearsProgram
-{
-	/*public class frmStart : System.Windows.Forms.Form
+{/*
+	public class frmStart : System.Windows.Forms.Form
 	{
 		private ModbusTCP.Master	MBmaster;
 		private TextBox				txtData;

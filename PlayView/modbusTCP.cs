@@ -128,7 +128,7 @@ namespace ModbusTCP
         /// <param name="port">Port number of modbus slave. Usually port 502 is used.</param>
         public Master(string ip, ushort port)
         {
-            connect(ip, port);
+            //connect(ip, port);
         }
 
         // ------------------------------------------------------------------------

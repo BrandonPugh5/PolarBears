@@ -78,3 +78,17 @@ C:\Users\shop\Desktop\All Together Gui\Versions\PlayView 11-27\PlayView\obj\Debu
 C:\Users\shop\Desktop\All Together Gui\Versions\PlayView 11-27\PlayView\obj\Debug\PlayView.csproj.CoreCompileInputs.cache
 C:\Users\shop\Desktop\All Together Gui\Versions\PlayView 11-27\PlayView\obj\Debug\PlayView.exe
 C:\Users\shop\Desktop\All Together Gui\Versions\PlayView 11-27\PlayView\obj\Debug\PlayView.pdb
+D:\Proof Productions\11-28\PlayView\bin\Debug\PlayView.exe.config
+D:\Proof Productions\11-28\PlayView\bin\Debug\PlayView.exe
+D:\Proof Productions\11-28\PlayView\bin\Debug\PlayView.pdb
+D:\Proof Productions\11-28\PlayView\obj\Debug\PlayView.csprojResolveAssemblyReference.cache
+D:\Proof Productions\11-28\PlayView\obj\Debug\PolarBearsProgram.Cue_Editor.resources
+D:\Proof Productions\11-28\PlayView\obj\Debug\PlayView.frmStart.resources
+D:\Proof Productions\11-28\PlayView\obj\Debug\PolarBearsProgram.LogForm.resources
+D:\Proof Productions\11-28\PlayView\obj\Debug\PolarBearsProgram.MotorConfiguration.resources
+D:\Proof Productions\11-28\PlayView\obj\Debug\PolarBearsProgram.PlayView.resources
+D:\Proof Productions\11-28\PlayView\obj\Debug\PlayView.Properties.Resources.resources
+D:\Proof Productions\11-28\PlayView\obj\Debug\PlayView.csproj.GenerateResource.Cache
+D:\Proof Productions\11-28\PlayView\obj\Debug\PlayView.csproj.CoreCompileInputs.cache
+D:\Proof Productions\11-28\PlayView\obj\Debug\PlayView.exe
+D:\Proof Productions\11-28\PlayView\obj\Debug\PlayView.pdb

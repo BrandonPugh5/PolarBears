@@ -5,10 +5,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-<<<<<<< HEAD
 using PolarBearsProgram;
-=======
->>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82
 
 namespace ModbusTCP
 {
@@ -47,10 +44,7 @@ namespace ModbusTCP
         private const byte fctWriteMultipleCoils = 15;
         private const byte fctWriteMultipleRegister = 16;
         private const byte fctReadWriteMultipleRegister = 23;
-<<<<<<< HEAD
         private LogForm log = new LogForm();
-=======
->>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82
 
         /// <summary>Constant for exception illegal function.</summary>
         public const byte excIllegalFunction = 1;
@@ -640,16 +634,11 @@ namespace ModbusTCP
         // Write data and and wait for response
         private byte[] WriteSyncData(byte[] write_data, ushort id)
         {
-<<<<<<< HEAD
             if(tcpSynCl == null)
             {
                 log.AddRow("Connection Lost");
             }
             else if (tcpSynCl.Connected)
-=======
-
-            if (tcpSynCl.Connected)
->>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82
             {
                 try
                 {

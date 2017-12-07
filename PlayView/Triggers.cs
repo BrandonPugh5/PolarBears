@@ -69,8 +69,4 @@ namespace PolarBearsProgram
             return rtime;
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82

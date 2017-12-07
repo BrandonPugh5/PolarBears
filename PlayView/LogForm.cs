@@ -12,89 +12,16 @@ namespace PolarBearsProgram
 {
     public partial class LogForm : Form
     {
-<<<<<<< HEAD
         public LogForm()
         {
             InitializeComponent();
         }
-        
-        public void AddRow(string action, string plc, string motor_name, Boolean pause, int angle_rotation, int accelerate, int velocity, int duration)
-        {
-            string logName = DateTime.Now.ToString("M-d-yyyy");
-            string path = (@"C:\Users\shop\Desktop\All Together Gui\Log Files\" + logName + ".txt");
-=======
-       
-        public LogForm()
-        {
-            InitializeComponent(); 
-        }
-        
-
-        public void AddRow(string action, string plc,string motor_name,Boolean pause, int angle_rotation,int accelerate, int velocity, int duration)
-        {
-            string logName = DateTime.Now.ToString("M-d-yyyy");
-            string path = (@"C:\Users\shop\Desktop\All Together Gui\Log Files\"+logName+".txt");
->>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82
-            //string path = (@"C:\Users\Elisa\Desktop\Log Files\" + logName + ".txt");
-            string time = DateTime.Now.ToString("h:mm:ss tt"); //gets current time
-            string date = DateTime.Now.ToString("M/d/yyyy"); //gets current date
-
-            if (!File.Exists(path))
-            {
-                //File.Create(path);
-<<<<<<< HEAD
-
-                TextWriter tw = new StreamWriter(File.Create(path));
-                tw.WriteLine("Log File");
-                tw.WriteLine((date + " " + time) + "; " + action + "; PLC:" + plc + "; Motor:" + motor_name + "; Pause:" + pause + "; Rotation:" + angle_rotation + " degrees; Acceleration:" + accelerate + "m/s^2; Velocity: " + velocity + " m/s; Duration: " + duration + "sec");
-                tw.Close();
-            }
-            else if (File.Exists(path))
-            {
-                using (var tw = new StreamWriter(path, true))
-                {
-                    tw.WriteLine((date + " " + time) + "; " + action + "; PLC:" + plc + "; Motor:" + motor_name + "; Pause:" + pause + "; Rotation:" + angle_rotation + " degrees; Acceleration:" + accelerate + "m/s^2; Velocity: " + velocity + " m/s; Duration: " + duration + "sec");
-                    tw.Close();
-                }
-            }
-            dataGridView1.Rows.Add((date + " " + time), action, plc, motor_name, pause, angle_rotation, accelerate, velocity);
-        }
-
-        public void AddRow(string action)
-        {
-            string logName = DateTime.Now.ToString("M-d-yyyy");
-            //string path = (@"C:\Users\shop\Desktop\All Together Gui\Log Files\" + logName + ".txt");
-            //string path = (@"C:\Users\Elisa\Desktop\Log Files\" + logName + ".txt");
-            string path = (@"C:\Users\bspug\Desktop\Log Files\" + logName + ".txt");
-=======
-           
-                TextWriter tw = new StreamWriter(File.Create(path));
-                tw.WriteLine("Log File");
-                tw.WriteLine((date + " " + time) + "; " + action + "; PLC:" + plc + "; Motor:" + motor_name + "; Pause:"+ pause +"; Rotation:" + angle_rotation + " degrees; Acceleration:"+accelerate+"m/s^2; Velocity: " + velocity+" m/s; Duration: "+duration +"sec");
-                tw.Close();
-            }
-
-          
-
-                else if (File.Exists(path))
-            {
-                using (var tw = new StreamWriter(path, true))
-                {
-                    tw.WriteLine((date + " " + time) + "; " + action + "; PLC:" + plc+ "; Motor:" + motor_name + "; Pause:" + pause + "; Rotation:" + angle_rotation + " degrees; Acceleration:" + accelerate + "m/s^2; Velocity: " + velocity + " m/s; Duration: " + duration + "sec");
-                    tw.Close();
-                }
-            }
-
-            dataGridView1.Rows.Add((date + " " + time),action,plc, motor_name,pause, angle_rotation,accelerate,velocity);
-        }
-
 
         public void AddRow(string action)
         {
             string logName = DateTime.Now.ToString("M-d-yyyy");
             string path = (@"C:\Users\shop\Desktop\All Together Gui\Log Files\" + logName + ".txt");
             //string path = (@"C:\Users\Elisa\Desktop\Log Files\" + logName + ".txt");
->>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82
             string time = DateTime.Now.ToString("h:mm:ss tt"); //gets current time
             string date = DateTime.Now.ToString("M/d/yyyy"); //gets current date
 
@@ -107,12 +34,6 @@ namespace PolarBearsProgram
                 tw.WriteLine((date + " " + time) + "; " + action);
                 tw.Close();
             }
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82
             else if (File.Exists(path))
             {
                 using (var tw = new StreamWriter(path, true))
@@ -121,10 +42,6 @@ namespace PolarBearsProgram
                     tw.Close();
                 }
             }
-<<<<<<< HEAD
-=======
-
->>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82
             dataGridView1.Rows.Add((date + " " + time), action);
         }
 

@@ -31,12 +31,22 @@ namespace PolarBearsProgram
         bool Delete = false;
         Thread t;
 
+<<<<<<< HEAD
         private Master MBmaster = new Master("192.168.10.4", 502);
+=======
+        private ModbusTCP.Master MBmaster = new Master("192.168.10.4", 502);
+>>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82
         private TextBox txtData;
         private Label labData;
         private byte[] data = new Byte[12];
         private byte[] result;
+<<<<<<< HEAD
         
+=======
+
+        
+
+>>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82
         public Cue_Editor()
         {
             InitializeComponent();
@@ -57,15 +67,27 @@ namespace PolarBearsProgram
 
         private void button1_Click(object sender, EventArgs e) //Create_cue
         {
+<<<<<<< HEAD
+=======
+
+>>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82
             String objectname = Microsoft.VisualBasic.Interaction.InputBox("What would you like to name this Cue", "Creating Cue", "Please give a meaningful name", -1, -1);
             Cue c = new Cue(objectname);
             log.AddRow("Created cue " + objectname);
             newCueList.Add(c);
+<<<<<<< HEAD
+=======
+
+>>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82
             Created_Cues.Items.Add(c);
         }
 
         private void Created_Cues_SelectedIndexChanged(object sender, EventArgs e)
         {
+<<<<<<< HEAD
+=======
+
+>>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82
             Cue selected = (Cue)Created_Cues.SelectedItem;
             dataGridView1.Rows.Clear();
 
@@ -73,7 +95,11 @@ namespace PolarBearsProgram
             {
                 foreach (Triggers tevent in selected.ReturnTrigger())
                 {
+<<<<<<< HEAD
                     dataGridView1.Rows.Add(tevent.PLC(), tevent.Motor(), tevent.Pause(), tevent.Rotation(), tevent.Acceleration(), tevent.Deceleration(), tevent.Velocity(), tevent.Time());
+=======
+                    dataGridView1.Rows.Add(tevent.PLC(), tevent.Motor(), tevent.Pause(), tevent.Rotation(), tevent.Acceleration(), tevent.Velocity(), tevent.Time());
+>>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82
                 }
             }
         }
@@ -104,6 +130,10 @@ namespace PolarBearsProgram
                 textBox19.Enabled = true;
                 textBox1.Enabled = true;
             }
+<<<<<<< HEAD
+=======
+
+>>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82
         }
 
         //add trigger to datagrid
@@ -111,8 +141,13 @@ namespace PolarBearsProgram
         {
             if (Created_Cues.SelectedItem != null)
             {
+<<<<<<< HEAD
                 if (!string.IsNullOrWhiteSpace(comboBox1.Text))
                 {
+=======
+                 if (!string.IsNullOrWhiteSpace(comboBox1.Text))
+                    {
+>>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82
                     Cue selected = (Cue)Created_Cues.SelectedItem;
                     if (textBox8.Text == "")
                         textBox8.Text = "0";
@@ -168,11 +203,23 @@ namespace PolarBearsProgram
             {
                 int datarows = 0;
                 Cue selected = (Cue)Created_Cues.SelectedItem;
+<<<<<<< HEAD
                 if (selected.trigs != null)
                 {
                     selected.trigs.Clear();
                 }
 
+=======
+                if (selected.trigs == null)
+                {
+
+                }
+                else
+                {
+                    selected.trigs.Clear();
+                }
+                
+>>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82
                 //int trigCounter;
                 //counts rows in dataGrid
                 foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -197,12 +244,46 @@ namespace PolarBearsProgram
                     deceleration = int.Parse(dataGridView1.Rows[counter].Cells[5].Value.ToString());
                     velocity = int.Parse(dataGridView1.Rows[counter].Cells[6].Value.ToString());
                     time = int.Parse(dataGridView1.Rows[counter].Cells[7].Value.ToString());
+<<<<<<< HEAD
                     selected.TriggerAdd(plc, motor, pause, rotation, acceleration, deceleration, velocity, time);
                     counter = counter + 1;
+=======
+                    selected.TriggerAdd(plc, motor, pause, rotation, acceleration,deceleration, velocity, time);
+                    /*
+                    if ((counter+1) > trigCounter || trigCounter ==0) //if first item in list or new item
+                    {
+                        selected.TriggerAdd(plc, motor, pause, rotation, acceleration, velocity, time);
+                        log.AddRow("Added trigger to cue " + selected, "plc", "motor", pause, rotation, acceleration, velocity, time);
+                    }
+                   else //changing edited rows
+                    {
+                        if (selected.trigs[counter].PLC() != plc)
+                            selected.trigs[counter].rplc = plc;
+                        if (selected.trigs[counter].Motor() != motor)
+                            selected.trigs[counter].rmotor = motor;
+                        if (selected.trigs[counter].Pause() != pause)
+                            selected.trigs[counter].rpause = pause;
+                        if (selected.trigs[counter].Rotation() != rotation)
+                            selected.trigs[counter].rrotation = rotation;
+                        if (selected.trigs[counter].Acceleration() != acceleration)
+                            selected.trigs[counter].raccel = acceleration;
+                        if (selected.trigs[counter].Velocity() != velocity)
+                            selected.trigs[counter].rvel = velocity;
+                        if (selected.trigs[counter].Time() != time)
+                            selected.trigs[counter].rtime = time;
+                    }
+                    */
+                    counter = counter + 1;
+
+>>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82
                 }
             }
         }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82
         //Testing Button
         private void button3_Click(object sender, EventArgs e)
         {
@@ -239,6 +320,10 @@ namespace PolarBearsProgram
                     }
                 }
             }
+<<<<<<< HEAD
+=======
+
+>>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82
             else
                 MessageBox.Show("Must select a motor!");
         }
@@ -281,8 +366,13 @@ namespace PolarBearsProgram
 
             byte[] bytes = BitConverter.GetBytes(setPointVelocity.GetSetValue);
             byte[] bytes2 = BitConverter.GetBytes(acceleration);
+<<<<<<< HEAD
             ControlWord_I3 wordi3 = new ControlWord_I3();
 
+=======
+            ControlWord_I3 wordi3 =new ControlWord_I3();
+            
+>>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82
             Console.WriteLine(wordi3.GetSetValue);
             data[0] = 0; //byte 0 of Control 1
             data[1] = 0; //byte 1 of Control 1
@@ -291,8 +381,13 @@ namespace PolarBearsProgram
             data[4] = 10;  //byte 0 of Control 3
             data[5] = 6;   //byte 1 of Control 3
             Console.WriteLine(data[4] + " " + data[5]);
+<<<<<<< HEAD
             data[6] = BitConverter.GetBytes(setPointVelocity.GetSetValue)[1];  // byte 1 of Velocity
 
+=======
+             data[6] = BitConverter.GetBytes(setPointVelocity.GetSetValue)[1];  // byte 1 of Velocity
+           
+>>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82
             data[7] = BitConverter.GetBytes(setPointVelocity.GetSetValue)[0];  // byte 0 of velocity
             data[8] = BitConverter.GetBytes(acceleration)[1];  // byte 1 of Velocity
             data[9] = BitConverter.GetBytes(acceleration)[0];  // byte 0 of velocity
@@ -300,7 +395,11 @@ namespace PolarBearsProgram
             data[11] = BitConverter.GetBytes(deceleration)[0];
 
             int start = DateTime.Now.Second;
+<<<<<<< HEAD
             int counter = start + 1;
+=======
+            int counter = start+1;
+>>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82
             int howLong = start;
             int endTime = howLong + runTime;
 
@@ -308,13 +407,21 @@ namespace PolarBearsProgram
             {
                 MBmaster.ReadWriteMultipleRegister(ID, unit, StartAddress, 12, StartAddress, data, ref result);
                 howLong = DateTime.Now.Second;
+<<<<<<< HEAD
                 /*if (howLong == counter)
+=======
+                if (howLong == counter)
+>>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82
                 {
                     log.AddRow("velocity is " + result[6] + "" + result[7]);// + result[7]);
                     long position = result[12] * 256 * 256 * 256 + result[13] * 256 * 256 + result[14] * 256 + result[15];
                     log.AddRow("Position is: " + position);
                     counter++;
+<<<<<<< HEAD
                 }*/
+=======
+                }
+>>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82
             }
         }
 
@@ -398,14 +505,22 @@ namespace PolarBearsProgram
         }
 
         //Returns true if valid data
+<<<<<<< HEAD
         public Boolean ValidateLimits(int Rotation, int Acceleration, int Deceleration, int Velocity)
+=======
+        public Boolean ValidateLimits(int Rotation, int Acceleration,int Deceleration, int Velocity)
+>>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82
         {
             Motor motorSelected = (Motor)comboBox1.SelectedItem;
             //int valRotate = motorSelected.Rotation_Limit();
             int valAcceleration = motorSelected.Acceleration_Limit();
             int valDecel = motorSelected.Deceleration_Limit();
             int valVelocity = motorSelected.Velocity_Limit();
+<<<<<<< HEAD
             if (Acceleration <= valAcceleration && Velocity <= valVelocity && Velocity >= 0 && Acceleration >= 0 && Deceleration <= valDecel)
+=======
+            if (Acceleration <= valAcceleration && Velocity <= valVelocity && Velocity >= 0 && Acceleration >=0 && Deceleration <= valDecel)
+>>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82
             {
                 return true;
             }
@@ -470,6 +585,10 @@ namespace PolarBearsProgram
 
         }
 
+<<<<<<< HEAD
 
+=======
+       
+>>>>>>> a99e1d99940a2248cc67871b1734d6cdb7d0ba82
     }
 }

@@ -23,6 +23,7 @@ namespace PolarBearsProgram
         String plc;
         String motor;
         bool pause;
+        string direction;
         int rotation;
         int acceleration;
         int deceleration;
@@ -30,6 +31,7 @@ namespace PolarBearsProgram
         int time;
         bool Delete = false;
         Thread t;
+        public int previous = 0; //keeps track of the last tested velocity
 
         private Master MBmaster = new Master("192.168.10.4", 502);
         private TextBox txtData;
@@ -37,9 +39,15 @@ namespace PolarBearsProgram
         private byte[] data = new Byte[12];
         private byte[] result;
 
+        public Stopwatch stopwatch = new Stopwatch();
+
         public Cue_Editor()
         {
             InitializeComponent();
+            comboBoxAccel.SelectedIndex = 0; //accel as default
+            comboBoxCW.SelectedIndex = 0;   //CW as default
+            comboBoxMovement.SelectedIndex = 1; //velocity by time
+            comboBox3.SelectedIndex = 0; //Unit of Measurement
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -57,15 +65,18 @@ namespace PolarBearsProgram
 
         private void button1_Click(object sender, EventArgs e) //Create_cue
         {
+
             String objectname = Microsoft.VisualBasic.Interaction.InputBox("What would you like to name this Cue", "Creating Cue", "Please give a meaningful name", -1, -1);
             Cue c = new Cue(objectname);
             log.AddRow("Created cue " + objectname);
             newCueList.Add(c);
+
             Created_Cues.Items.Add(c);
         }
 
         private void Created_Cues_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             Cue selected = (Cue)Created_Cues.SelectedItem;
             dataGridView1.Rows.Clear();
 
@@ -73,8 +84,7 @@ namespace PolarBearsProgram
             {
                 foreach (Triggers tevent in selected.ReturnTrigger())
                 {
-                    dataGridView1.Rows.Add(tevent.PLC(), tevent.Motor(), tevent.Pause(), tevent.Rotation(), tevent.Acceleration(), tevent.Deceleration(), tevent.Velocity(), tevent.Time());
-                    dataGridView1.Rows.Add(tevent.PLC(), tevent.Motor(), tevent.Pause(), tevent.Rotation(), tevent.Acceleration(), tevent.Velocity(), tevent.Time());
+                    dataGridView1.Rows.Add(tevent.PLC(), tevent.Motor(), tevent.Pause(),tevent.Direction(), tevent.Rotation(), tevent.Acceleration(),tevent.Deceleration(), tevent.Velocity(), tevent.Time());
                 }
             }
         }
@@ -88,78 +98,98 @@ namespace PolarBearsProgram
         {
             if (Pause_10.Checked)
             {
-                textBox8.Text = "";
-                textBox8.Enabled = false;
-                textBox9.Text = "";
-                textBox9.Enabled = false;
-                textBox19.Text = "";
-                textBox19.Enabled = false;
-                textBox1.Text = "";
-                textBox1.Enabled = false;
+                textBoxCW.Text = "";
+                textBoxCW.Enabled = false;
+                textBoxAccel.Text = "";
+                textBoxAccel.Enabled = false;
+                textBoxVel.Text = "";
+                textBoxVel.Enabled = false;
             }
 
             else
             {
-                textBox8.Enabled = true;
-                textBox9.Enabled = true;
-                textBox19.Enabled = true;
-                textBox1.Enabled = true;
+                textBoxCW.Enabled = true;
+                textBoxAccel.Enabled = true;
+                textBoxVel.Enabled = true;
             }
+
         }
 
         //add trigger to datagrid
         private void button1_Click_1(object sender, EventArgs e)
         {
-            if (Created_Cues.SelectedItem != null)
+            Console.WriteLine("Add Button");
+            if (textBoxTime.Text == "")
+                time = 0;
+            else
+                time = int.Parse(textBoxTime.Text);
+            if (Created_Cues.SelectedItem == null)
+                MessageBox.Show("Must select a Cue!");
+            else if (!string.IsNullOrWhiteSpace(comboBox1.Text))
             {
+                Cue selected = (Cue)Created_Cues.SelectedItem;
+                if (textBoxCW.Text == "")
+                    textBoxCW.Text = "0";
+                if (textBoxAccel.Text == "")
+                    textBoxAccel.Text = "0";
+                if (textBoxVel.Text == "")
+                    textBoxVel.Text = "0";
 
-                if (!string.IsNullOrWhiteSpace(comboBox1.Text))
+                plc = comboBox2.Text;
+                motor = comboBox1.Text;
+                pause = Pause_10.Checked;
+
+
+                direction = comboBoxCW.SelectedItem.ToString();
+                rotation = int.Parse(textBoxCW.Text);
+                if (comboBoxAccel.SelectedItem.ToString() == "Acceleration")
                 {
+                    acceleration = int.Parse(textBoxAccel.Text);
+                    deceleration = 0;
+                }
+                else
+                {
+                    acceleration = 0;
+                    deceleration = int.Parse(textBoxAccel.Text);
+                }
+                velocity = int.Parse(textBoxVel.Text);
 
-                    if (!string.IsNullOrWhiteSpace(comboBox1.Text))
+                if (comboBox3.SelectedIndex == 1) //Feet
+                {
+                    acceleration = (int)(acceleration * .305);
+                    deceleration = (int)(deceleration * .305);
+                    velocity = (int)(velocity * .305);
+                }
+                if(comboBox3.SelectedIndex == 2) //Inches
+                {
+                    acceleration = (int)(acceleration * .0254);
+                    deceleration = (int)(deceleration * .0254);
+                    velocity = (int)(velocity * .0254);
+                }
+                Console.WriteLine("Accel:" + acceleration);
+                Console.WriteLine("Decel:" + deceleration);
+                if (comboBoxMovement.SelectedItem.ToString() != "Degrees by Velocity") ;
+                time = time + int.Parse(textBoxAccelDecelTime.Text);
+
+                DialogResult result = MessageBox.Show("Are you sure you want to add these values to cue " + selected + "?\n" + " Pause: " + pause + "\n Rotation: " + rotation + " degrees\n Acceleration: " + acceleration + " m/s^2\n Velocity: " + velocity + " m/s\n Time: " + time + " sec\n on motor" + motor, "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    if (ValidateLimits(rotation, acceleration, deceleration, velocity)) //validates data
                     {
-                        Cue selected = (Cue)Created_Cues.SelectedItem;
-                        if (textBox8.Text == "")
-                            textBox8.Text = "0";
-                        if (textBox9.Text == "")
-                            textBox9.Text = "0";
-                        if (textBox19.Text == "")
-                            textBox19.Text = "0";
-                        if (textBox1.Text == "")
-                            textBox1.Text = "0";
+                        dataGridView1.Rows.Add(plc, motor, pause, direction, rotation, acceleration, deceleration, velocity, time);
 
-                        plc = comboBox2.Text;
-                        motor = comboBox1.Text;
-                        pause = Pause_10.Checked;
-                        rotation = int.Parse(textBox8.Text);
-                        acceleration = int.Parse(textBox9.Text);
-                        deceleration = int.Parse(textBox1.Text);
-                        velocity = int.Parse(textBox19.Text);
-                        time = int.Parse(textBox29.Text);
-                        DialogResult result = MessageBox.Show("Are you sure you want to add these values to cue " + selected + "?\n" + " Pause: " + pause + "\n Rotation: " + rotation + " degrees\n Acceleration: " + acceleration + " m/s^2\n Velocity: " + velocity + " m/s\n Time: " + time + " sec\n on motor" + motor, "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
-                        if (result == DialogResult.Yes)
-                        {
-                            if (ValidateLimits(rotation, acceleration, deceleration, velocity)) //validates data
-                            {
-                                dataGridView1.Rows.Add(plc, motor, pause, rotation, acceleration, deceleration, velocity, time);
-
-
-                                textBox8.Text = "";
-                                textBox9.Text = "";
-                                textBox19.Text = "";
-                                textBox29.Text = "";
-                                textBox1.Text = "";
-                            }
-                        }
-
-                        else
-                            MessageBox.Show("Must select a motor!");
+                        textBoxCW.Text = "";
+                        textBoxAccel.Text = "";
+                        textBoxVel.Text = "";
+                        textBoxTime.Text = "";
+                        // textBox1.Text = "";
                     }
-                    else
-                        MessageBox.Show("Must select a Cue!");
                 }
             }
+            else
+                MessageBox.Show("Must select a motor!");
         }
+        
         //Save Button
         private void button2_Click(object sender, EventArgs e)
         {
@@ -168,13 +198,6 @@ namespace PolarBearsProgram
             {
                 int datarows = 0;
                 Cue selected = (Cue)Created_Cues.SelectedItem;
-
-                if (selected.trigs != null)
-                {
-                    selected.trigs.Clear();
-                }
-
-
                 if (selected.trigs == null)
                 {
 
@@ -183,96 +206,97 @@ namespace PolarBearsProgram
                 {
                     selected.trigs.Clear();
                 }
-
-                //int trigCounter;
+                
                 //counts rows in dataGrid
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                     datarows = datarows + 1;
                 int counter = 0;
-                // if (!selected.trigs.Any()) //if List of trigs is empty
-                //       trigCounter = 0;
-                //  else
-                //    trigCounter = selected.trigs.Count;
+              
                 //Turns datarows into Triggers
-                while (counter != (datarows - 1))
+                while (counter != (datarows))
                 {
+                    motor= dataGridView1.Rows[counter].Cells[1].Value.ToString();
                     String pauseValue = dataGridView1.Rows[counter].Cells[2].Value.ToString();
                     if (pauseValue == "True")
                         pause = true;
-
                     else
                         pause = false;
 
-                    rotation = int.Parse(dataGridView1.Rows[counter].Cells[3].Value.ToString());
-                    acceleration = int.Parse(dataGridView1.Rows[counter].Cells[4].Value.ToString());
-                    deceleration = int.Parse(dataGridView1.Rows[counter].Cells[5].Value.ToString());
-                    velocity = int.Parse(dataGridView1.Rows[counter].Cells[6].Value.ToString());
-                    time = int.Parse(dataGridView1.Rows[counter].Cells[7].Value.ToString());
-
-                    selected.TriggerAdd(plc, motor, pause, rotation, acceleration, deceleration, velocity, time);
+                    direction= dataGridView1.Rows[counter].Cells[3].Value.ToString();
+                    rotation = int.Parse(dataGridView1.Rows[counter].Cells[4].Value.ToString());
+                    acceleration = int.Parse(dataGridView1.Rows[counter].Cells[5].Value.ToString());
+                    deceleration = int.Parse(dataGridView1.Rows[counter].Cells[6].Value.ToString());
+                    velocity = int.Parse(dataGridView1.Rows[counter].Cells[7].Value.ToString());
+                    time = int.Parse(dataGridView1.Rows[counter].Cells[8].Value.ToString());
+                    selected.TriggerAdd(plc, motor, pause,direction, rotation, acceleration,deceleration, velocity, time);
+                   
                     counter = counter + 1;
 
-                    selected.TriggerAdd(plc, motor, pause, rotation, acceleration, deceleration, velocity, time);
-                    /*
-                    if ((counter+1) > trigCounter || trigCounter ==0) //if first item in list or new item
-                    {
-                        selected.TriggerAdd(plc, motor, pause, rotation, acceleration, velocity, time);
-                        log.AddRow("Added trigger to cue " + selected, "plc", "motor", pause, rotation, acceleration, velocity, time);
-                    }
-                   else //changing edited rows
-                    {
-                        if (selected.trigs[counter].PLC() != plc)
-                            selected.trigs[counter].rplc = plc;
-                        if (selected.trigs[counter].Motor() != motor)
-                            selected.trigs[counter].rmotor = motor;
-                        if (selected.trigs[counter].Pause() != pause)
-                            selected.trigs[counter].rpause = pause;
-                        if (selected.trigs[counter].Rotation() != rotation)
-                            selected.trigs[counter].rrotation = rotation;
-                        if (selected.trigs[counter].Acceleration() != acceleration)
-                            selected.trigs[counter].raccel = acceleration;
-                        if (selected.trigs[counter].Velocity() != velocity)
-                            selected.trigs[counter].rvel = velocity;
-                        if (selected.trigs[counter].Time() != time)
-                            selected.trigs[counter].rtime = time;
-                    }
-                    */
-                    counter = counter + 1;
                 }
+                Console.WriteLine("nUMBER OF TRIGERS ADDED" + selected.trigs.Count());
             }
         }
+
 
         //Testing Button
         private void button3_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(comboBox1.Text))
+             if (!string.IsNullOrWhiteSpace(comboBox1.Text))
             {
-                if (textBox8.Text == "")
-                    textBox8.Text = "0";
-                if (textBox9.Text == "")
-                    textBox9.Text = "0";
-                if (textBox19.Text == "")
-                    textBox19.Text = "0";
-                if (textBox29.Text == "")
-                    textBox29.Text = "0";
-                if (textBox1.Text == "")
-                    textBox1.Text = "0";
+                if (textBoxCW.Text == "")
+                    textBoxCW.Text = "0";
+                if (textBoxAccel.Text == "")
+                    textBoxAccel.Text = "0";
+                if (textBoxVel.Text == "")
+                    textBoxVel.Text = "0";
+                if (textBoxTime.Text == "")
+                    textBoxTime.Text = "0";
 
                 plc = comboBox2.Text;
                 motor = comboBox1.Text;
                 pause = Pause_10.Checked;
-                rotation = int.Parse(textBox8.Text);
-                acceleration = int.Parse(textBox9.Text);
-                deceleration = int.Parse(textBox1.Text);
-                velocity = int.Parse(textBox19.Text);
-                time = int.Parse(textBox29.Text);
+                direction = comboBoxCW.SelectedItem.ToString();
+                rotation = int.Parse(textBoxCW.Text);
 
-                DialogResult result = MessageBox.Show("Are you sure you want to test these values?\n" + " Pause: " + pause + "\n Rotation: " + rotation + " degrees\n Acceleration: " + acceleration + " m/s^2\n Deceleration: " + deceleration + "m/s^2\n Velocity: " + velocity + " m/s\n Time: " + time + " sec\n on motor" + motor, "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                time = int.Parse(textBoxTime.Text);
+                
+                Console.WriteLine("Accel Box" + comboBoxAccel.SelectedItem.ToString());
+                if (comboBoxAccel.SelectedItem.ToString() == "Acceleration")
+                {
+                    acceleration = int.Parse(textBoxAccel.Text);
+                    deceleration = 0;
+                }
+                if (comboBoxAccel.SelectedItem.ToString() == "Deceleration") //should we test deceleration with a set acceleration or variable
+                {
+                    deceleration = int.Parse(textBoxAccel.Text);
+                    acceleration = 0;
+                }
+
+                velocity = int.Parse(textBoxVel.Text);
+
+                if (comboBox3.SelectedIndex == 1) //Feet
+                {
+                    acceleration = (int)(acceleration * .305);
+                    deceleration = (int)(deceleration * .305);
+                    velocity = (int)(velocity * .305);
+                }
+                else if(comboBox3.SelectedIndex == 2) //Inches
+                {
+                    acceleration = (int)(acceleration * .0254);
+                    deceleration = (int)(deceleration * .0254);
+                    velocity = (int)(velocity * .0254);
+                }
+
+                DialogResult result = MessageBox.Show("Are you sure you want to test these values?\n" + " Pause: " + pause + "\n Rotation: " + rotation + " degrees " + direction + "\n Acceleration: " + acceleration + " m/s^2\n Deceleration: " + deceleration + "m/s^2\n Velocity: " + velocity + " m/s\n Time: " + time + " sec\n on motor" + motor, "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes)
                 {
+                    if (t != null)
+                        if (t.IsAlive)
+                            t.Abort();
                     if (ValidateLimits(rotation, acceleration, deceleration, velocity)) //validates data
                     {
-                        log.AddRow("Testing this event" + " Pause: " + pause + "\n Rotation: " + rotation + " degrees\n Acceleration: " + acceleration + " m/s^2\n Deceleration:" + deceleration + "m/s^2\n Velocity: " + velocity + " m/s\n Time: " + time + " sec\n on motor" + motor);
+                        if (comboBoxAccel.SelectedItem.ToString() == "Acceleration")
+                            log.AddRow("Testing this event" + " Pause: " + pause + "\n Rotation: " + rotation + " degrees " + direction + "\n Acceleration: " + acceleration +/* " m/s²\n Deceleration:" + deceleration +*/ "m/s^2\n Velocity: " + velocity + " m/s\n Time: " + time + " sec\n on motor" + motor);
                         t = new Thread(() => DoWork());
                         t.Start();
                     }
@@ -287,29 +311,30 @@ namespace PolarBearsProgram
         {
             String size = "12";
             int startAddress = 4;
-            //int acceleration = 0;
             SetpointVelocity setPointVelocity = new SetpointVelocity();
-            int acceleration = Convert.ToInt16(textBox9.Text);
-            float f;
-            int runTime = Convert.ToInt16(textBox29.Text);
-            //System.Timers.Timer timer = new System.Timers.Timer(runTime);
+            int acceleration = Convert.ToInt16(textBoxAccel.Text);
 
-            if (string.IsNullOrWhiteSpace(textBox9.Text) || !float.TryParse(textBox9.Text, out f) || Convert.ToInt16(textBox9.Text) == 0 || acceleration == 0)
+            this.Invoke((MethodInvoker)delegate ()
             {
-                MessageBox.Show("Must input a non-zero decimal value for acceleration!");
-            }
-            else
+                String direction = comboBoxCW.SelectedItem.ToString();
+            });
+            int rotation = Convert.ToInt16(textBoxCW.Text);
+            float f;
+            int runTime = Convert.ToInt16(textBoxTime.Text);
+            stopwatch.Reset();
+
+            if ((string.IsNullOrWhiteSpace(textBoxAccel.Text) || !float.TryParse(textBoxAccel.Text, out f) || Convert.ToInt16(textBoxAccel.Text) == 0 || acceleration == 0))
             {
-                acceleration = Convert.ToInt16(textBox9.Text);
-                //logForm.AddRow("Changed acceleration to " + accelerationTextBox.Text, "", "", 0, setPointVelocity.GetSetValue);
+                MessageBox.Show("Must input a non-zero decimal value for Acceleration!");
             }
-            if (string.IsNullOrWhiteSpace(textBox19.Text) || !float.TryParse(textBox19.Text, out f))
+
+            if (string.IsNullOrWhiteSpace(textBoxVel.Text) || !float.TryParse(textBoxVel.Text, out f))
             {
                 MessageBox.Show("Must input a decimal value for velocity!");
             }
             else if (acceleration != 0)
             {
-                setPointVelocity.GetSetValue = Convert.ToInt16(textBox19.Text);
+                setPointVelocity.GetSetValue = Convert.ToInt16(textBoxVel.Text);
             }
 
             ushort ID = 8;
@@ -318,53 +343,136 @@ namespace PolarBearsProgram
 
             data = GetDataNew(Convert.ToByte(size));
 
-            byte[] bytes = BitConverter.GetBytes(setPointVelocity.GetSetValue);
-            byte[] bytes2 = BitConverter.GetBytes(acceleration);
+            /*byte[] bytes = BitConverter.GetBytes(setPointVelocity.GetSetValue);
+            byte[] bytes2 = BitConverter.GetBytes(acceleration);*/
+            ControlWord_I3 wordi3 =new ControlWord_I3();
+            
+            if (direction.Equals("Clockwise"))
+            {
+                wordi3.Positive = false;
+                wordi3.Negative = true;
+            }
+            else
+            {
+                wordi3.Positive = true;
+                wordi3.Negative = false;
+            }
 
-            ControlWord_I3 wordi3 = new ControlWord_I3();
-            Console.WriteLine(wordi3.GetSetValue);
             data[0] = 0; //byte 0 of Control 1
             data[1] = 0; //byte 1 of Control 1
             data[2] = 0; //byte 0 of Binary Outputs
             data[3] = 0;  //byte 1 of Binary Outputs
-            data[4] = 10;  //byte 0 of Control 3
-            data[5] = 6;   //byte 1 of Control 3
-            Console.WriteLine(data[4] + " " + data[5]);
-
-            data[6] = BitConverter.GetBytes(setPointVelocity.GetSetValue)[1];  // byte 1 of Velocity
-
-
+            data[4] = BitConverter.GetBytes(wordi3.GetSetValue)[1];  //byte 0 of Control 3
+            data[5] = BitConverter.GetBytes(wordi3.GetSetValue)[0];   //byte 1 of Control 3
             data[6] = BitConverter.GetBytes(setPointVelocity.GetSetValue)[1];  // byte 1 of Velocity
             data[7] = BitConverter.GetBytes(setPointVelocity.GetSetValue)[0];  // byte 0 of velocity
             data[8] = BitConverter.GetBytes(acceleration)[1];  // byte 1 of Velocity
             data[9] = BitConverter.GetBytes(acceleration)[0];  // byte 0 of velocity
             data[10] = BitConverter.GetBytes(deceleration)[1];
             data[11] = BitConverter.GetBytes(deceleration)[0];
+            
+            MBmaster.ReadWriteMultipleRegister(8, 0, Convert.ToUInt16(4), 12, Convert.ToUInt16(4), data, ref result);
+            Program.playView.position.currentPosition = result[12] * 256 * 256 * 256 + result[13] * 256 * 256 + result[14] * 256 + result[15];
 
-            int start = DateTime.Now.Second;
-
-            int counter = start + 1;
-
-            int howLong = start;
-            int endTime = howLong + runTime;
-
-            while (howLong < endTime)
+            float positionBefore = Program.playView.position.currentPosition;
+            long position = Program.playView.position.currentPosition;
+            Console.WriteLine("current pos " + Program.playView.position.currentPosition);
+            if (rotation == 0)
             {
-                MBmaster.ReadWriteMultipleRegister(ID, unit, StartAddress, 12, StartAddress, data, ref result);
-                howLong = DateTime.Now.Second;
-
-                /*if (howLong == counter)
-
-                if (howLong == counter)
+                Console.WriteLine("rotation = 0");
+                if(textBoxAccelDecelTime.Text != "")
                 {
-                    log.AddRow("velocity is " + result[6] + "" + result[7]);// + result[7]);
-                    long position = result[12] * 256 * 256 * 256 + result[13] * 256 * 256 + result[14] * 256 + result[15];
-                    log.AddRow("Position is: " + position);
-                    counter++;
+                    if (deceleration == 0)
+                    {
+                        int time = Convert.ToInt16(textBoxAccelDecelTime.Text);
+                    }
+                    else
+                    {
+                        int decelTime = Math.Abs(previous - velocity) / deceleration;
+                        time = decelTime;
+                    }
+                    stopwatch.Start();
+                    while (stopwatch.Elapsed < TimeSpan.FromSeconds(runTime + time))
+                    {
+                        MBmaster.ReadWriteMultipleRegister(ID, unit, StartAddress, 12, StartAddress, data, ref result);
+                        Program.playView.position.currentPosition = result[12] * 256 * 256 * 256 + result[13] * 256 * 256 + result[14] * 256 + result[15];
+                        
+                        this.Invoke((MethodInvoker)delegate ()
+                        {
+                            textBox3.Text = Program.playView.position.Degrees().ToString();
+                            textBox4.Text = Program.playView.position.currentPosition.ToString();
+                        });
+                    }
+                    stopwatch.Reset();
+                }
+                else
+                {
+                    stopwatch.Start();
+                    while (stopwatch.Elapsed < TimeSpan.FromSeconds(runTime))
+                    {
+                        this.Invoke((MethodInvoker)delegate ()
+                        {
+                            textBox3.Text = Program.playView.position.Degrees().ToString();
+                        });
+                        this.Invoke((MethodInvoker)delegate ()
+                        {
 
-                }*/
-
+                            textBox4.Text = Program.playView.position.currentPosition.ToString();
+                        });
+                    }
+                    int timeAfter = DateTime.Now.Second;
+                    Console.WriteLine("time after " + timeAfter);
+                    Console.WriteLine("finalpos " + position);
+                    Console.WriteLine("Rate of position over time " + (position - positionBefore) / runTime);
+                }
             }
+            else //Movement by Rotation
+            {
+                MBmaster.ReadWriteMultipleRegister(8, 0, Convert.ToUInt16(4), 12, Convert.ToUInt16(4), data, ref result);
+                Program.playView.position.currentPosition = result[12] * 256 * 256 * 256 + result[13] * 256 * 256 + result[14] * 256 + result[15];
+
+                Console.WriteLine("rotation != 0 " + rotation);
+
+                if (direction.Equals("Clockwise"))
+                {
+                    int degrees = Convert.ToInt16(textBoxCW.Text);
+                    int positions = degrees * 2100;
+
+                    // rotation = Convert.ToInt16(textBoxCW.Text) - Program.playView.position.turnedDegrees;
+
+                    //cw
+                    int startingPos = Program.playView.position.currentPosition;
+                    Console.WriteLine("Starting pos: " + startingPos + "Ending Position: " + (startingPos - positions));
+                    while (Program.playView.position.currentPosition > (startingPos - positions))
+                    {
+                        MBmaster.ReadWriteMultipleRegister(ID, unit, StartAddress, 12, StartAddress, data, ref result);
+                        Program.playView.position.currentPosition = result[12] * 256 * 256 * 256 + result[13] * 256 * 256 + result[14] * 256 + result[15];
+                        this.Invoke((MethodInvoker)delegate ()
+                        {
+                            textBox3.Text = Program.playView.position.Degrees().ToString();
+                            textBox4.Text = Program.playView.position.currentPosition.ToString();
+                        });
+                    }
+                }
+                else//ccw
+                {
+                    int degrees = Convert.ToInt16(textBoxCW.Text);
+                    int positions = degrees * 2100;
+                    int startingPos = Program.playView.position.currentPosition;
+                    while (Program.playView.position.currentPosition < (startingPos + positions))
+                    {
+                        MBmaster.ReadWriteMultipleRegister(ID, unit, StartAddress, 12, StartAddress, data, ref result);
+                        Program.playView.position.currentPosition = result[12] * 256 * 256 * 256 + result[13] * 256 * 256 + result[14] * 256 + result[15];
+                        this.Invoke((MethodInvoker)delegate ()
+                        {
+                            textBox3.Text = Program.playView.position.Degrees().ToString();
+                            textBox4.Text = Program.playView.position.currentPosition.ToString();
+                        });
+                    }
+                }
+            }
+            previous = velocity;
+            Console.WriteLine("previous " + previous);
         }
 
         //Move Up Button
@@ -380,7 +488,6 @@ namespace PolarBearsProgram
                 Results.Cells[Row].Value = CurrentRow.Cells[Row].Value;
             }
             dataGridView1.Rows.Insert(NewIndex, Results);
-            //dataGridView1.CurrentCell = dataGridView1(0, NewIndex);
         }
 
         //down button
@@ -415,7 +522,7 @@ namespace PolarBearsProgram
                 {
                     Delete = true;
                     Created_Cues.Items.Remove(selected);
-
+                    newCueList.Remove(selected);
                 }
                 Delete = false;
             }
@@ -439,7 +546,7 @@ namespace PolarBearsProgram
         //Emergency Stop
         private void EStop_Click(object sender, EventArgs e)
         {
-            if (t != null)
+            if (t != null &&  t.IsAlive)
             {
                 t.Suspend();
                 log.AddRow("Emergency Stop Called");
@@ -447,50 +554,77 @@ namespace PolarBearsProgram
         }
 
         //Returns true if valid data
-
-        public Boolean ValidateLimits(int Rotation, int Acceleration, int Deceleration, int Velocity)
+        public Boolean ValidateLimits(int Rotation, float Acceleration, float Deceleration, int Velocity)
         {
             Motor motorSelected = (Motor)comboBox1.SelectedItem;
-            //int valRotate = motorSelected.Rotation_Limit();
-            int valAcceleration = motorSelected.Acceleration_Limit();
-            int valDecel = motorSelected.Deceleration_Limit();
-            int valVelocity = motorSelected.Velocity_Limit();
+            int valAcceleration = motorSelected.AccelLimit;
+            int valDecel = motorSelected.DecelLimit;
+            int valVelocity = motorSelected.VelocityLimit;
+            int valAccelSoft = motorSelected.AccelSoftLimit;
+            int valDecelSoft = motorSelected.DecelSoftLimit;
+            int valVelocitySoft = motorSelected.VelocitySoftLimit;
+            int valRotationSoft = motorSelected.RotationSoftLimit;
+           // bool velocitySoftLimitMessagePoppedUp = false;
+           // bool accelerationSoftLimitMessagePoppedUp = false;
+           // bool decelerationSoftLimitMessagePoppedUp = false;
+           /// bool rotationSoftLimitMessagePoppedUp = false;
+         
 
-            if (Acceleration <= valAcceleration && Velocity <= valVelocity && Velocity >= 0 && Acceleration >= 0 && Deceleration <= valDecel)
 
-                if (Acceleration <= valAcceleration && Velocity <= valVelocity && Velocity >= 0 && Acceleration >= 0 && Deceleration <= valDecel)
+            if (comboBoxAccel.SelectedItem.ToString() == "Acceleration")
+            {
+                if (Acceleration > valAcceleration)
                 {
-                    return true;
+                    MessageBox.Show("You entered a Acceleration greater then the limit of " + valAcceleration, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    log.AddRow("Invalid Acceleration input");
+                    return false;
                 }
+                if (valAccelSoft != 0 && valAccelSoft > int.Parse(textBoxAccel.Text))//&& !accelerationSoftLimitMessagePoppedUp)
+                {
+                    //MessageBox.Show("You can enter values greater than the Soft Limit, but a soft limit was set for a reason. Please consider using smaller values for acceleration.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    // accelerationSoftLimitMessagePoppedUp = true;
+                    MessageBox.Show("You entered a Acceleration less then the soft limit of " + valAccelSoft, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    log.AddRow("Invalid Acceleration input");
+                    return false;
+                }
+               
+            }
 
-            // if (Rotation > valRotate)
-            //   MessageBox.Show("You entered a Rotation greater then the limit of " + valRotate, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            if (Acceleration > valAcceleration)
+            if (comboBoxAccel.SelectedItem.ToString() == "Deceleration")
             {
-                MessageBox.Show("You entered a Acceleration greater then the limit of " + valAcceleration, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                log.AddRow("Invalid Acceleration input");
+                if (Deceleration > valDecel)
+                {
+                    MessageBox.Show("You entered a Deceleration greater then the limit of " + valDecel, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    log.AddRow("Invalid Deceleration input");
+                    return false;
+                }
+                if (valDecelSoft != 0 && valDecelSoft > int.Parse(textBoxAccel.Text))// && !decelerationSoftLimitMessagePoppedUp)
+                {
+                    MessageBox.Show("You entered a Deceleration less then the limit of " + valDecelSoft, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    log.AddRow("Invalid Deceleration input");
+                    return false;
+                }
             }
-            if (Deceleration > valDecel)
-            {
-                MessageBox.Show("You entered a Deceleration greater then the limit of " + valDecel, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                log.AddRow("Invalid Deceleration input");
-            }
-            if (Velocity < 0)
-            {
-                MessageBox.Show("You entered a Acceleration less than 0", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                log.AddRow("Invalid Acceleration input");
-            }
-            if (Velocity > valVelocity)
+
+             if (Velocity > valVelocity)
             {
                 MessageBox.Show("You entered a Velocity greater then the limit of " + valVelocity, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 log.AddRow("Invalid Velocity input");
+                return false;
             }
-            if (Velocity < 0)
+             if (Velocity < 0)
             {
                 MessageBox.Show("You entered a Velocity less than 0", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 log.AddRow("Invalid Velocity input");
+                return false;
             }
-            return false;
+             if (valVelocitySoft != 0 && valVelocitySoft > int.Parse(textBoxVel.Text) )//&& !velocitySoftLimitMessagePoppedUp)
+            {
+                MessageBox.Show("You entered a Velocity less then the limit of " + valVelocitySoft, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                log.AddRow("Invalid Velocity input");
+                return false;
+            }
+            return true;
         }
 
         //PlayView Button
@@ -507,14 +641,89 @@ namespace PolarBearsProgram
             Hide();
         }
 
+        //
         private void comboBox1_Click(object sender, EventArgs e)
         {
+            comboBox1.Items.Clear();
             foreach (Motor motors in MotorConfiguration.motors)
             {
                 if (!comboBox1.Items.Contains(motors))
                 {
                     comboBox1.Items.Add(motors);
                 }
+            }
+        }
+
+        private void comboBoxMovement_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            textBoxTime.Text = "";
+            textBoxAccel.Text = "";
+            textBoxCW.Text = "";
+            textBoxVel.Text = "";
+
+            if (comboBoxMovement.SelectedItem.ToString()=="Degrees by Velocity")
+            {
+                textBoxTime.Enabled = false;
+                textBoxAccel.Enabled = true;
+                textBoxCW.Enabled = true;
+                textBoxVel.Enabled = true;
+            }
+            if (comboBoxMovement.SelectedItem.ToString() == "Velocity by Time")
+            {
+                textBoxTime.Enabled = true;
+                textBoxAccel.Enabled = true;
+                textBoxCW.Enabled = false;
+                textBoxVel.Enabled = true;
+            }
+        }
+
+        private void textBoxVel_TextChanged(object sender, EventArgs e)
+        {
+            if (comboBoxMovement.SelectedItem.ToString() == "Velocity by Time")
+            {
+                if(textBoxAccel.Text != "" && textBoxAccel.Text != "0")
+                {
+                    int vel = int.Parse(textBoxVel.Text);
+                    int acc = int.Parse(textBoxAccel.Text);
+                    textBoxAccelDecelTime.Text = (vel / acc).ToString();
+                }
+            }
+        }
+
+        private void textBoxAccel_TextChanged(object sender, EventArgs e)
+        {
+            if (comboBoxMovement.SelectedItem.ToString() == "Velocity by Time")
+            {
+                if (textBoxVel.Text != "" && textBoxVel.Text !="0")
+                {
+                    if (textBoxAccel.Text != "" && textBoxAccel.Text != "0")
+                    {
+                        int vel = int.Parse(textBoxVel.Text);
+                        Console.WriteLine(int.Parse(textBoxVel.Text));
+                        Console.WriteLine(int.Parse(textBoxAccel.Text));
+                        int acc = int.Parse(textBoxAccel.Text.ToString());
+                        textBoxAccelDecelTime.Text = (vel / acc).ToString();
+                    }
+                }
+            }
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(comboBox3.SelectedIndex == 0)
+            {
+                label3.Text = "m/s²";
+                label4.Text = "m/s";
+            }
+            else if(comboBox3.SelectedIndex == 1)
+            {
+                label3.Text = "ft/s²";
+                label4.Text = "ft/s";
+            }
+            else
+            {
+                label3.Text = "in/s²";
+                label4.Text = "in/s";
             }
         }
     }

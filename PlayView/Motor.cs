@@ -8,22 +8,32 @@ namespace PolarBearsProgram
 {
     public class Motor
     {
-        string ip;
+       
         int rotation_limit;
         int accel_limit;
         int velocity_limit;
         int decel_limit;
+        public string ip { get; set; }
+        public int AccelLimit { get; set; }
+        public int VelocityLimit { get; set; }
+        public int DecelLimit { get; set; }
+        public int RotationSoftLimit { get; set; }
+        public int AccelSoftLimit { get; set; }
+        public int DecelSoftLimit { get; set; }
+        public int VelocitySoftLimit { get; set; }
         public String serial;
 
-        public Motor(String IP, String serial, int Acceleration,int Deceleration, int Velocity)
+        public Motor(String ip, String Serial, int AccelLimit, int DecelLimit, int VelocityLimit,/* int RotationSoftLimit*/ int AccelSoftLimit, int DecelSoftLimit, int VelocitySoftLimit)
         {
-            this.ip = IP;
-            //this.rotation_limit = Rotation;
-            this.serial = serial;
-            this.accel_limit = Acceleration;
-            this.decel_limit = Deceleration;
-            this.velocity_limit = Velocity;
-        
+            this.ip = ip;
+            this.serial = Serial;
+            this.AccelLimit = AccelLimit;
+            this.DecelLimit = DecelLimit;
+            this.VelocityLimit = VelocityLimit;
+            this.RotationSoftLimit = RotationSoftLimit;
+            this.AccelSoftLimit = AccelSoftLimit;
+            this.DecelSoftLimit = DecelSoftLimit;
+            this.VelocitySoftLimit = VelocitySoftLimit;
         }
 
         public string IP()

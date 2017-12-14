@@ -33,9 +33,9 @@ namespace PolarBearsProgram
             return cueName;
         }
         //adds a trigger to to list of Trigger objects
-        public void TriggerAdd(String plc,String motor, Boolean pause, int rotation, int acceleration,int deceleration, int velocity, int time)
+        public void TriggerAdd(String plc,String motor, Boolean pause,String direction, int rotation, int acceleration,int deceleration, int velocity, int time)
         {
-            trigs.Add(new Triggers(plc, motor, pause, rotation, acceleration,deceleration, velocity, time));
+            trigs.Add(new Triggers(plc, motor, pause,direction, rotation, acceleration,deceleration, velocity, time));
         }
 
         public List<Triggers> ReturnTrigger()

@@ -31,15 +31,15 @@ namespace PolarBearsProgram
         //Add Motor
         private void button2_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(maskedTextBox1.Text))
+            if (string.IsNullOrWhiteSpace(maskedTextBoxVHL.Text))
             {
                 MessageBox.Show("Must input a non-zero decimal value for velocity!");
             }
-            if (string.IsNullOrWhiteSpace(maskedTextBox2.Text))
+            if (string.IsNullOrWhiteSpace(maskedTextBoxAHL.Text))
             {
                 MessageBox.Show("Must input a non-zero decimal value for acceleration!");
             }
-            if (string.IsNullOrWhiteSpace(maskedTextBox3.Text))
+            if (string.IsNullOrWhiteSpace(maskedTextBoxDHL.Text))
             {
                 MessageBox.Show("Must input a non-zero decimal value for deceleration!");
             }
@@ -48,13 +48,13 @@ namespace PolarBearsProgram
                 MessageBox.Show("Must input a name for the motor!");
             }
 
-            if (!string.IsNullOrWhiteSpace(maskedTextBox1.Text) && !string.IsNullOrWhiteSpace(maskedTextBox2.Text) && !string.IsNullOrWhiteSpace(maskedTextBox3.Text) &&!string.IsNullOrWhiteSpace(textBox1.Text))
+            if (!string.IsNullOrWhiteSpace(maskedTextBoxVHL.Text) && !string.IsNullOrWhiteSpace(maskedTextBoxAHL.Text) && !string.IsNullOrWhiteSpace(maskedTextBoxDHL.Text) &&!string.IsNullOrWhiteSpace(textBox1.Text))
             {
-                motors.Add(new Motor(ip_1, textBox1.Text, int.Parse(maskedTextBox2.Text),int.Parse(maskedTextBox1.Text), int.Parse(maskedTextBox1.Text)));
+                motors.Add(new Motor(ip_1, textBox1.Text, int.Parse(maskedTextBoxAHL.Text),int.Parse(maskedTextBoxDHL.Text),int.Parse(maskedTextBoxVHL.Text),int.Parse(maskedTextBoxASL.Text), int.Parse(maskedTextBoxDSL.Text), int.Parse(maskedTextBoxVSL.Text)));
                 dataGridView1.Rows.Clear();
                 foreach(Motor motor in motors)
                 {
-                    dataGridView1.Rows.Add(motor, motor.IP());
+                    dataGridView1.Rows.Add(motor, motor.IP(), motor.AccelLimit, motor.AccelSoftLimit, motor.DecelLimit, motor.DecelSoftLimit, motor.VelocityLimit, motor.VelocitySoftLimit);
                 }
             }
         }
@@ -101,7 +101,7 @@ namespace PolarBearsProgram
                 dataGridView1.Rows.Clear();
                 foreach (Motor motor in motors)
                 {
-                    dataGridView1.Rows.Add(motor, motor.IP());
+                    dataGridView1.Rows.Add(motor, motor.IP(), motor.AccelLimit, motor.AccelSoftLimit, motor.DecelLimit,motor.DecelSoftLimit,motor.VelocityLimit,motor.VelocitySoftLimit);
                 }
             }
         }
@@ -109,7 +109,14 @@ namespace PolarBearsProgram
         //Delete Button
         private void button5_Click(object sender, EventArgs e)
         {
-            
+            int rowIndex = dataGridView1.CurrentCell.RowIndex;
+            dataGridView1.Rows.RemoveAt(rowIndex);
+            motors.RemoveAt(rowIndex);
+            dataGridView1.Rows.Clear();
+            foreach (Motor motor in motors)
+            {
+                dataGridView1.Rows.Add(motor, motor.IP(), motor.AccelLimit, motor.AccelSoftLimit, motor.DecelLimit, motor.DecelSoftLimit, motor.VelocityLimit, motor.VelocitySoftLimit);
+            }
         }
     }
 }

@@ -16,7 +16,7 @@ namespace PolarBearsProgram
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            
+
             // Application.Run(p);
             playView = new PlayView();
             cueEdit = new Cue_Editor();

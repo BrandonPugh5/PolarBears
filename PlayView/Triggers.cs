@@ -10,17 +10,19 @@ namespace PolarBearsProgram
        public String rplc;
         public String rmotor;
         public Boolean rpause;
+        public String rdirection;
         public int rrotation;
         public int raccel;
         public int rdecel;
         public int rvel;
         public int rtime;
 
-        public Triggers(String plc, String motor, Boolean pause, int rotation, int acceleration,int deceleration, int velocity,int time)
+        public Triggers(String plc, String motor, Boolean pause,String direction, int rotation, int acceleration,int deceleration, int velocity,int time)
         {
             this.rplc = plc;
             this.rmotor = motor;
             this.rpause = pause;
+            this.rdirection = direction;
             this.rrotation = rotation;
             this.raccel = acceleration;
             this.rdecel = deceleration;
@@ -41,6 +43,10 @@ namespace PolarBearsProgram
         public Boolean Pause()
         {
             return rpause;
+        }
+        public String Direction()
+        {
+            return rdirection;
         }
 
         public int Rotation()

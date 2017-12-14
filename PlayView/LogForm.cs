@@ -55,8 +55,9 @@ namespace PolarBearsProgram
         public void AddRow(string action)
         {
             string logName = DateTime.Now.ToString("M-d-yyyy");
-            string path = (@"C:\Users\shop\Desktop\All Together Gui\Log Files\" + logName + ".txt");
+            //string path = (@"C:\Users\shop\Desktop\All Together Gui\Log Files\" + logName + ".txt");
             //string path = (@"C:\Users\Elisa\Desktop\Log Files\" + logName + ".txt");
+            string path = (@"C:\Users\bspug\Desktop\Log Files\" + logName + ".txt");
             string time = DateTime.Now.ToString("h:mm:ss tt"); //gets current time
             string date = DateTime.Now.ToString("M/d/yyyy"); //gets current date
 

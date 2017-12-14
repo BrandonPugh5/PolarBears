@@ -36,10 +36,10 @@ namespace PolarBearsProgram
         public PlayView()
         {
             data = testing(data);
-            MBmaster.ReadWriteMultipleRegister(8, 0, Convert.ToUInt16(4), 12, Convert.ToUInt16(4), data, ref result);
+            //MBmaster.ReadWriteMultipleRegister(8, 0, Convert.ToUInt16(4), 12, Convert.ToUInt16(4), data, ref result);
             InitializeComponent();
-            position = new Rotation(result[12] * 256 * 256 * 256 + result[13] * 256 * 256 + result[14] * 256 + result[15]);
-            position.initialPosition= result[12] * 256 * 256 * 256 + result[13] * 256 * 256 + result[14] * 256 + result[15];
+            //position = new Rotation(result[12] * 256 * 256 * 256 + result[13] * 256 * 256 + result[14] * 256 + result[15]);
+            //position.initialPosition= result[12] * 256 * 256 * 256 + result[13] * 256 * 256 + result[14] * 256 + result[15];
             
         
         }

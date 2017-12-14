@@ -149,3 +149,17 @@ C:\Users\shop\Desktop\All Together Gui\Versions\12-13\PlayView\obj\Debug\PlayVie
 C:\Users\shop\Desktop\All Together Gui\Versions\12-13\PlayView\obj\Debug\PlayView.csproj.CoreCompileInputs.cache
 C:\Users\shop\Desktop\All Together Gui\Versions\12-13\PlayView\obj\Debug\PlayView.exe
 C:\Users\shop\Desktop\All Together Gui\Versions\12-13\PlayView\obj\Debug\PlayView.pdb
+D:\School\2017 Fall\Software Engineering\Proof Productions\PolarBears-final\PlayView\bin\Debug\PlayView.exe.config
+D:\School\2017 Fall\Software Engineering\Proof Productions\PolarBears-final\PlayView\bin\Debug\PlayView.exe
+D:\School\2017 Fall\Software Engineering\Proof Productions\PolarBears-final\PlayView\bin\Debug\PlayView.pdb
+D:\School\2017 Fall\Software Engineering\Proof Productions\PolarBears-final\PlayView\obj\Debug\PlayView.csprojResolveAssemblyReference.cache
+D:\School\2017 Fall\Software Engineering\Proof Productions\PolarBears-final\PlayView\obj\Debug\PolarBearsProgram.Cue_Editor.resources
+D:\School\2017 Fall\Software Engineering\Proof Productions\PolarBears-final\PlayView\obj\Debug\PlayView.frmStart.resources
+D:\School\2017 Fall\Software Engineering\Proof Productions\PolarBears-final\PlayView\obj\Debug\PolarBearsProgram.LogForm.resources
+D:\School\2017 Fall\Software Engineering\Proof Productions\PolarBears-final\PlayView\obj\Debug\PolarBearsProgram.MotorConfiguration.resources
+D:\School\2017 Fall\Software Engineering\Proof Productions\PolarBears-final\PlayView\obj\Debug\PolarBearsProgram.PlayView.resources
+D:\School\2017 Fall\Software Engineering\Proof Productions\PolarBears-final\PlayView\obj\Debug\PlayView.Properties.Resources.resources
+D:\School\2017 Fall\Software Engineering\Proof Productions\PolarBears-final\PlayView\obj\Debug\PlayView.csproj.GenerateResource.Cache
+D:\School\2017 Fall\Software Engineering\Proof Productions\PolarBears-final\PlayView\obj\Debug\PlayView.csproj.CoreCompileInputs.cache
+D:\School\2017 Fall\Software Engineering\Proof Productions\PolarBears-final\PlayView\obj\Debug\PlayView.exe
+D:\School\2017 Fall\Software Engineering\Proof Productions\PolarBears-final\PlayView\obj\Debug\PlayView.pdb

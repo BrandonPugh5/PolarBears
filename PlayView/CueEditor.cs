@@ -80,7 +80,7 @@ namespace PolarBearsProgram
             Cue selected = (Cue)Created_Cues.SelectedItem;
             dataGridView1.Rows.Clear();
 
-            if (Delete == false)
+            if (Delete == false && selected.ReturnTrigger() != null )
             {
                 foreach (Triggers tevent in selected.ReturnTrigger())
                 {

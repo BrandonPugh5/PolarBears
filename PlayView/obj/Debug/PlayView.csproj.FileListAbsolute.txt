@@ -1,0 +1,151 @@
+C:\Users\BlizzardBear\Documents\C# Example\PlayView\PlayView\bin\Debug\PlayView.exe.config
+C:\Users\BlizzardBear\Documents\C# Example\PlayView\PlayView\obj\Debug\PlayView.csprojResolveAssemblyReference.cache
+C:\Users\BlizzardBear\Documents\C# Example\PlayView\PlayView\obj\Debug\PlayView.PlayView.resources
+C:\Users\BlizzardBear\Documents\C# Example\PlayView\PlayView\obj\Debug\PlayView.Properties.Resources.resources
+C:\Users\BlizzardBear\Documents\C# Example\PlayView\PlayView\obj\Debug\PlayView.csproj.GenerateResource.Cache
+C:\Users\BlizzardBear\Documents\C# Example\PlayView\PlayView\bin\Debug\PlayView.exe
+C:\Users\BlizzardBear\Documents\C# Example\PlayView\PlayView\bin\Debug\PlayView.pdb
+C:\Users\BlizzardBear\Documents\C# Example\PlayView\PlayView\obj\Debug\PlayView.exe
+C:\Users\BlizzardBear\Documents\C# Example\PlayView\PlayView\obj\Debug\PlayView.pdb
+C:\Users\shop\Desktop\PlayView-20171113T214031Z-001\PlayView\PlayView\bin\Debug\PlayView.exe.config
+C:\Users\shop\Desktop\PlayView-20171113T214031Z-001\PlayView\PlayView\bin\Debug\PlayView.exe
+C:\Users\shop\Desktop\PlayView-20171113T214031Z-001\PlayView\PlayView\bin\Debug\PlayView.pdb
+C:\Users\shop\Desktop\PlayView-20171113T214031Z-001\PlayView\PlayView\obj\Debug\PlayView.csprojResolveAssemblyReference.cache
+C:\Users\shop\Desktop\PlayView-20171113T214031Z-001\PlayView\PlayView\obj\Debug\PlayView.Properties.Resources.resources
+C:\Users\shop\Desktop\PlayView-20171113T214031Z-001\PlayView\PlayView\obj\Debug\PlayView.csproj.GenerateResource.Cache
+C:\Users\shop\Desktop\PlayView-20171113T214031Z-001\PlayView\PlayView\obj\Debug\PlayView.csproj.CoreCompileInputs.cache
+C:\Users\shop\Desktop\PlayView-20171113T214031Z-001\PlayView\PlayView\obj\Debug\PlayView.exe
+C:\Users\shop\Desktop\PlayView-20171113T214031Z-001\PlayView\PlayView\obj\Debug\PlayView.pdb
+C:\Users\shop\Desktop\PlayView-20171113T214031Z-001\PlayView\PlayView\obj\Debug\PolarBearsProgram.Que_Editor.resources
+C:\Users\shop\Desktop\PlayView-20171113T214031Z-001\PlayView\PlayView\obj\Debug\PolarBearsProgram.LogForm.resources
+C:\Users\shop\Desktop\PlayView-20171113T214031Z-001\PlayView\PlayView\obj\Debug\PolarBearsProgram.MotorConfiguration.resources
+C:\Users\shop\Desktop\PlayView-20171113T214031Z-001\PlayView\PlayView\obj\Debug\PolarBearsProgram.PlayView.resources
+C:\Users\shop\Desktop\All Together Gui\PlayView\PlayView\bin\Debug\PlayView.exe.config
+C:\Users\shop\Desktop\All Together Gui\PlayView\PlayView\bin\Debug\PlayView.exe
+C:\Users\shop\Desktop\All Together Gui\PlayView\PlayView\bin\Debug\PlayView.pdb
+C:\Users\shop\Desktop\All Together Gui\PlayView\PlayView\obj\Debug\PlayView.csprojResolveAssemblyReference.cache
+C:\Users\shop\Desktop\All Together Gui\PlayView\PlayView\obj\Debug\PolarBearsProgram.Cue_Editor.resources
+C:\Users\shop\Desktop\All Together Gui\PlayView\PlayView\obj\Debug\PolarBearsProgram.LogForm.resources
+C:\Users\shop\Desktop\All Together Gui\PlayView\PlayView\obj\Debug\PolarBearsProgram.MotorConfiguration.resources
+C:\Users\shop\Desktop\All Together Gui\PlayView\PlayView\obj\Debug\PolarBearsProgram.PlayView.resources
+C:\Users\shop\Desktop\All Together Gui\PlayView\PlayView\obj\Debug\PlayView.Properties.Resources.resources
+C:\Users\shop\Desktop\All Together Gui\PlayView\PlayView\obj\Debug\PlayView.csproj.GenerateResource.Cache
+C:\Users\shop\Desktop\All Together Gui\PlayView\PlayView\obj\Debug\PlayView.csproj.CoreCompileInputs.cache
+C:\Users\shop\Desktop\All Together Gui\PlayView\PlayView\obj\Debug\PlayView.exe
+C:\Users\shop\Desktop\All Together Gui\PlayView\PlayView\obj\Debug\PlayView.pdb
+C:\Users\shop\Desktop\All Together Gui\PlayView\PlayView\obj\Debug\PlayView.frmStart.resources
+C:\Users\shop\Desktop\All Together Gui\PlayView\PlayView\obj\Debug\PlayView.MotorTesting.resources
+C:\Users\Elisa\Desktop\PlayView 11-16\PlayView\bin\Debug\PlayView.exe.config
+C:\Users\Elisa\Desktop\PlayView 11-16\PlayView\bin\Debug\PlayView.exe
+C:\Users\Elisa\Desktop\PlayView 11-16\PlayView\bin\Debug\PlayView.pdb
+C:\Users\Elisa\Desktop\PlayView 11-16\PlayView\obj\Debug\PlayView.csprojResolveAssemblyReference.cache
+C:\Users\Elisa\Desktop\PlayView 11-16\PlayView\obj\Debug\PolarBearsProgram.Cue_Editor.resources
+C:\Users\Elisa\Desktop\PlayView 11-16\PlayView\obj\Debug\PlayView.frmStart.resources
+C:\Users\Elisa\Desktop\PlayView 11-16\PlayView\obj\Debug\PolarBearsProgram.LogForm.resources
+C:\Users\Elisa\Desktop\PlayView 11-16\PlayView\obj\Debug\PolarBearsProgram.MotorConfiguration.resources
+C:\Users\Elisa\Desktop\PlayView 11-16\PlayView\obj\Debug\PlayView.MotorTesting.resources
+C:\Users\Elisa\Desktop\PlayView 11-16\PlayView\obj\Debug\PolarBearsProgram.PlayView.resources
+C:\Users\Elisa\Desktop\PlayView 11-16\PlayView\obj\Debug\PlayView.Properties.Resources.resources
+C:\Users\Elisa\Desktop\PlayView 11-16\PlayView\obj\Debug\PlayView.csproj.GenerateResource.Cache
+C:\Users\Elisa\Desktop\PlayView 11-16\PlayView\obj\Debug\PlayView.csproj.CoreCompileInputs.cache
+C:\Users\Elisa\Desktop\PlayView 11-16\PlayView\obj\Debug\PlayView.exe
+C:\Users\Elisa\Desktop\PlayView 11-16\PlayView\obj\Debug\PlayView.pdb
+C:\Users\shop\Downloads\PlayView11_19\PlayView 11-19\PlayView\bin\Debug\PlayView.exe.config
+C:\Users\shop\Downloads\PlayView11_19\PlayView 11-19\PlayView\bin\Debug\PlayView.exe
+C:\Users\shop\Downloads\PlayView11_19\PlayView 11-19\PlayView\bin\Debug\PlayView.pdb
+C:\Users\shop\Downloads\PlayView11_19\PlayView 11-19\PlayView\obj\Debug\PlayView.csprojResolveAssemblyReference.cache
+C:\Users\shop\Downloads\PlayView11_19\PlayView 11-19\PlayView\obj\Debug\PolarBearsProgram.Cue_Editor.resources
+C:\Users\shop\Downloads\PlayView11_19\PlayView 11-19\PlayView\obj\Debug\PlayView.frmStart.resources
+C:\Users\shop\Downloads\PlayView11_19\PlayView 11-19\PlayView\obj\Debug\PolarBearsProgram.LogForm.resources
+C:\Users\shop\Downloads\PlayView11_19\PlayView 11-19\PlayView\obj\Debug\PolarBearsProgram.MotorConfiguration.resources
+C:\Users\shop\Downloads\PlayView11_19\PlayView 11-19\PlayView\obj\Debug\PolarBearsProgram.PlayView.resources
+C:\Users\shop\Downloads\PlayView11_19\PlayView 11-19\PlayView\obj\Debug\PlayView.Properties.Resources.resources
+C:\Users\shop\Downloads\PlayView11_19\PlayView 11-19\PlayView\obj\Debug\PlayView.csproj.GenerateResource.Cache
+C:\Users\shop\Downloads\PlayView11_19\PlayView 11-19\PlayView\obj\Debug\PlayView.csproj.CoreCompileInputs.cache
+C:\Users\shop\Downloads\PlayView11_19\PlayView 11-19\PlayView\obj\Debug\PlayView.exe
+C:\Users\shop\Downloads\PlayView11_19\PlayView 11-19\PlayView\obj\Debug\PlayView.pdb
+C:\Users\shop\Desktop\All Together Gui\Versions\PlayView 11-27\PlayView\bin\Debug\PlayView.exe.config
+C:\Users\shop\Desktop\All Together Gui\Versions\PlayView 11-27\PlayView\bin\Debug\PlayView.exe
+C:\Users\shop\Desktop\All Together Gui\Versions\PlayView 11-27\PlayView\bin\Debug\PlayView.pdb
+C:\Users\shop\Desktop\All Together Gui\Versions\PlayView 11-27\PlayView\obj\Debug\PlayView.csprojResolveAssemblyReference.cache
+C:\Users\shop\Desktop\All Together Gui\Versions\PlayView 11-27\PlayView\obj\Debug\PolarBearsProgram.Cue_Editor.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\PlayView 11-27\PlayView\obj\Debug\PlayView.frmStart.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\PlayView 11-27\PlayView\obj\Debug\PolarBearsProgram.LogForm.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\PlayView 11-27\PlayView\obj\Debug\PolarBearsProgram.MotorConfiguration.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\PlayView 11-27\PlayView\obj\Debug\PolarBearsProgram.PlayView.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\PlayView 11-27\PlayView\obj\Debug\PlayView.Properties.Resources.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\PlayView 11-27\PlayView\obj\Debug\PlayView.csproj.GenerateResource.Cache
+C:\Users\shop\Desktop\All Together Gui\Versions\PlayView 11-27\PlayView\obj\Debug\PlayView.csproj.CoreCompileInputs.cache
+C:\Users\shop\Desktop\All Together Gui\Versions\PlayView 11-27\PlayView\obj\Debug\PlayView.exe
+C:\Users\shop\Desktop\All Together Gui\Versions\PlayView 11-27\PlayView\obj\Debug\PlayView.pdb
+C:\Users\shop\Desktop\All Together Gui\Versions\11-28\PlayView\bin\Debug\PlayView.exe.config
+C:\Users\shop\Desktop\All Together Gui\Versions\11-28\PlayView\bin\Debug\PlayView.exe
+C:\Users\shop\Desktop\All Together Gui\Versions\11-28\PlayView\bin\Debug\PlayView.pdb
+C:\Users\shop\Desktop\All Together Gui\Versions\11-28\PlayView\obj\Debug\PlayView.csprojResolveAssemblyReference.cache
+C:\Users\shop\Desktop\All Together Gui\Versions\11-28\PlayView\obj\Debug\PolarBearsProgram.Cue_Editor.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\11-28\PlayView\obj\Debug\PlayView.frmStart.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\11-28\PlayView\obj\Debug\PolarBearsProgram.LogForm.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\11-28\PlayView\obj\Debug\PolarBearsProgram.MotorConfiguration.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\11-28\PlayView\obj\Debug\PolarBearsProgram.PlayView.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\11-28\PlayView\obj\Debug\PlayView.Properties.Resources.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\11-28\PlayView\obj\Debug\PlayView.csproj.GenerateResource.Cache
+C:\Users\shop\Desktop\All Together Gui\Versions\11-28\PlayView\obj\Debug\PlayView.csproj.CoreCompileInputs.cache
+C:\Users\shop\Desktop\All Together Gui\Versions\11-28\PlayView\obj\Debug\PlayView.exe
+C:\Users\shop\Desktop\All Together Gui\Versions\11-28\PlayView\obj\Debug\PlayView.pdb
+C:\Users\shop\Desktop\All Together Gui\Versions\12-4\PlayView\obj\Debug\PlayView.csprojResolveAssemblyReference.cache
+C:\Users\shop\Desktop\All Together Gui\Versions\12-4\PlayView\obj\Debug\PolarBearsProgram.Cue_Editor.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\12-4\PlayView\obj\Debug\PlayView.frmStart.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\12-4\PlayView\obj\Debug\PolarBearsProgram.LogForm.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\12-4\PlayView\obj\Debug\PolarBearsProgram.MotorConfiguration.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\12-4\PlayView\obj\Debug\PolarBearsProgram.PlayView.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\12-4\PlayView\obj\Debug\PlayView.Properties.Resources.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\12-4\PlayView\obj\Debug\PlayView.csproj.GenerateResource.Cache
+C:\Users\shop\Desktop\All Together Gui\Versions\12-4\PlayView\obj\Debug\PlayView.csproj.CoreCompileInputs.cache
+C:\Users\shop\Desktop\All Together Gui\Versions\12-4\PlayView\obj\Debug\PlayView.exe
+C:\Users\shop\Desktop\All Together Gui\Versions\12-4\PlayView\obj\Debug\PlayView.pdb
+C:\Users\shop\Desktop\All Together Gui\Versions\12-4\PlayView\bin\Debug\PlayView.exe.config
+C:\Users\shop\Desktop\All Together Gui\Versions\12-4\PlayView\bin\Debug\PlayView.exe
+C:\Users\shop\Desktop\All Together Gui\Versions\12-4\PlayView\bin\Debug\PlayView.pdb
+C:\Users\shop\Desktop\All Together Gui\Versions\12-7\PlayView\bin\Debug\PlayView.exe.config
+C:\Users\shop\Desktop\All Together Gui\Versions\12-7\PlayView\bin\Debug\PlayView.exe
+C:\Users\shop\Desktop\All Together Gui\Versions\12-7\PlayView\bin\Debug\PlayView.pdb
+C:\Users\shop\Desktop\All Together Gui\Versions\12-7\PlayView\obj\Debug\PlayView.csprojResolveAssemblyReference.cache
+C:\Users\shop\Desktop\All Together Gui\Versions\12-7\PlayView\obj\Debug\PolarBearsProgram.Cue_Editor.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\12-7\PlayView\obj\Debug\PlayView.frmStart.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\12-7\PlayView\obj\Debug\PolarBearsProgram.LogForm.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\12-7\PlayView\obj\Debug\PolarBearsProgram.MotorConfiguration.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\12-7\PlayView\obj\Debug\PolarBearsProgram.PlayView.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\12-7\PlayView\obj\Debug\PlayView.Properties.Resources.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\12-7\PlayView\obj\Debug\PlayView.csproj.GenerateResource.Cache
+C:\Users\shop\Desktop\All Together Gui\Versions\12-7\PlayView\obj\Debug\PlayView.csproj.CoreCompileInputs.cache
+C:\Users\shop\Desktop\All Together Gui\Versions\12-7\PlayView\obj\Debug\PlayView.exe
+C:\Users\shop\Desktop\All Together Gui\Versions\12-7\PlayView\obj\Debug\PlayView.pdb
+C:\Users\shop\Desktop\All Together Gui\Versions\12-7\PlayView\obj\Debug\PolarBearsProgram.MotorConfigurationNew.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\12-10\PlayView\bin\Debug\PlayView.exe.config
+C:\Users\shop\Desktop\All Together Gui\Versions\12-10\PlayView\bin\Debug\PlayView.exe
+C:\Users\shop\Desktop\All Together Gui\Versions\12-10\PlayView\bin\Debug\PlayView.pdb
+C:\Users\shop\Desktop\All Together Gui\Versions\12-10\PlayView\obj\Debug\PlayView.csprojResolveAssemblyReference.cache
+C:\Users\shop\Desktop\All Together Gui\Versions\12-10\PlayView\obj\Debug\PolarBearsProgram.Cue_Editor.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\12-10\PlayView\obj\Debug\PlayView.frmStart.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\12-10\PlayView\obj\Debug\PolarBearsProgram.LogForm.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\12-10\PlayView\obj\Debug\PolarBearsProgram.MotorConfiguration.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\12-10\PlayView\obj\Debug\PolarBearsProgram.PlayView.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\12-10\PlayView\obj\Debug\PlayView.Properties.Resources.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\12-10\PlayView\obj\Debug\PlayView.csproj.GenerateResource.Cache
+C:\Users\shop\Desktop\All Together Gui\Versions\12-10\PlayView\obj\Debug\PlayView.csproj.CoreCompileInputs.cache
+C:\Users\shop\Desktop\All Together Gui\Versions\12-10\PlayView\obj\Debug\PlayView.exe
+C:\Users\shop\Desktop\All Together Gui\Versions\12-10\PlayView\obj\Debug\PlayView.pdb
+C:\Users\shop\Desktop\All Together Gui\Versions\12-13\PlayView\bin\Debug\PlayView.exe.config
+C:\Users\shop\Desktop\All Together Gui\Versions\12-13\PlayView\bin\Debug\PlayView.exe
+C:\Users\shop\Desktop\All Together Gui\Versions\12-13\PlayView\bin\Debug\PlayView.pdb
+C:\Users\shop\Desktop\All Together Gui\Versions\12-13\PlayView\obj\Debug\PlayView.csprojResolveAssemblyReference.cache
+C:\Users\shop\Desktop\All Together Gui\Versions\12-13\PlayView\obj\Debug\PolarBearsProgram.Cue_Editor.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\12-13\PlayView\obj\Debug\PlayView.frmStart.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\12-13\PlayView\obj\Debug\PolarBearsProgram.LogForm.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\12-13\PlayView\obj\Debug\PolarBearsProgram.MotorConfiguration.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\12-13\PlayView\obj\Debug\PolarBearsProgram.PlayView.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\12-13\PlayView\obj\Debug\PlayView.Properties.Resources.resources
+C:\Users\shop\Desktop\All Together Gui\Versions\12-13\PlayView\obj\Debug\PlayView.csproj.GenerateResource.Cache
+C:\Users\shop\Desktop\All Together Gui\Versions\12-13\PlayView\obj\Debug\PlayView.csproj.CoreCompileInputs.cache
+C:\Users\shop\Desktop\All Together Gui\Versions\12-13\PlayView\obj\Debug\PlayView.exe
+C:\Users\shop\Desktop\All Together Gui\Versions\12-13\PlayView\obj\Debug\PlayView.pdb
